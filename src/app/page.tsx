@@ -23,6 +23,9 @@ const DEFAULT_CNPJ_FILIAL = MALAF_FILIAIS[0].cnpj;
 const TENANT = process.env.NEXT_PUBLIC_TENANT || 'F8A63EBF-A4C5-457D-9482-2D6381318B8E';
 const API_POST_URL = 'https://api.maglog.com.br/api-wms/rest/1/event/expedicao';
 
+// texto fixo para observação de pedidos via integração
+const FIXED_OBSERVATION = 'Maglog:pedido criado por Um Grau e Meio via integração.';
+
 // --- INTERFACES (Mantidas) ---
 interface Destinatario {
   CNPJCPF: string;
@@ -153,6 +156,14 @@ export default function ExpedicaoPage() {
     setIsProcessing(true);
 
     const formPayload = JSON.parse(JSON.stringify(manualForm));
+
+        // Se o usuário digitou algo, adiciona o texto fixo + o que foi digitado.
+    if (formPayload.Observacao) {
+        formPayload.Observacao = `${FIXED_OBSERVATION} | ${formPayload.Observacao}`;
+    } else {
+        // Se o usuário deixou o campo vazio, envia apenas o texto fixo.
+        formPayload.Observacao = FIXED_OBSERVATION;
+    }
 
     // Tratar Transportadora vazia (Mantido)
     if (!formPayload.Transportadora.Nome && !formPayload.Transportadora.CNPJ) {
