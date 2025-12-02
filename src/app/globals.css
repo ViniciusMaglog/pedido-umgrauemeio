@@ -236,6 +236,23 @@ h1 {
     width: 100%;
 }
 
+/* botão add item */
+.add-item-btn, .remove-item-btn {
+  /* ... (outras propriedades) ... */
+  height: 40px;
+  transition: background-color 0.2s;
+}
+
+.add-item-btn {
+  background-color: #28a745; /* Verde Sucesso */
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+.add-item-btn:hover {
+    background-color: #1b5e20;
+}
+
 /* Alinhamento do botão X */
 .item-action-group {
     height: 100%; /* Ocupa a altura do item */
