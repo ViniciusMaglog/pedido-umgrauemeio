@@ -1,33 +1,68 @@
+/* ==========================================================================
+  1. Variáveis de Cor e Tema
+  ========================================================================== */
 :root {
-  --background: #ffffff;
+  /* Tema Claro (Padrão) */
+  --background: #f4f7f9;
   --foreground: #171717;
+  --primary-color: #008080; /* Teal para botões e links */
+  --primary-color-hover: #006666;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --input-bg: #ffffff; /* Fundo do input */
+
+  --success-bg: #c8e6c9;
+  --success-text: #1b5e20;
+  --error-bg: #ffcdd2;
+  --error-text: #b71c1c;
+  --loading-bg: #bbdefb;
+  --loading-text: #0d47a1;
+  --pending-bg: #e0e0e0;
+  --pending-text: #424242;
 }
 
+/* Tema escuro funcional (Ativado pela preferência do navegador) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121212;
+    --foreground: #e0e0e0;
+    --primary-color: #008080; /* Mantido Teal */
+    --primary-color-hover: #006666;
+    --card-bg: #1e1e1e;
+    --border-color: #424242;
+    --input-bg: #2d2d2d; /* Fundo do input no modo escuro */
+
+    --success-bg: #2e7d32;
+    --success-text: #e8f5e9;
+    --error-bg: #c62828;
+    --error-text: #ffcdd2;
+    --loading-bg: #1565c0;
+    --loading-text: #e3f2fd;
+    --pending-bg: #424242;
+    --pending-text: #eeeeee;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* ==========================================================================
+  2. Reset e Estilos Globais
+  ========================================================================== */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  line-height: 1.6;
 }
 
 a {
@@ -35,8 +70,313 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* ==========================================================================
+  3. Layout e Componentes Principais
+  ========================================================================== */
+.container {
+  max-width: 800px;
+  width: 95%;
+  margin: 40px auto;
+  padding: 20px;
+  /* Removido text-align: center para melhor alinhamento do formulário */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  margin-bottom: 24px;
+  object-fit: contain;
+}
+
+h1 {
+  margin-bottom: 24px;
+  text-align: center;
+  color: var(--foreground);
+}
+
+/* Informação fixa (Um Grau e Meio) */
+.fixed-info {
+    padding: 5px 0 15px;
+    font-size: 1.0em;
+    color: var(--primary-color);
+    font-style: italic;
+    text-align: left;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+  4. Formulários
+  ========================================================================== */
+.form-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Estilo geral para inputs e selects */
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card input[type="date"],
+.form-card input[type="file"],
+.form-card textarea,
+.input-padrao,
+.form-card select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  color: var(--foreground);
+  font-size: 1rem;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+/* Estilo para input date desabilitado/readonly */
+.form-card input[readonly] {
+    background-color: var(--pending-bg) !important;
+    cursor: not-allowed !important;
+}
+
+/* Ajuste para textarea */
+.form-card textarea {
+    height: auto !important;
+    min-height: 80px;
+}
+
+/* Remoção das setas do input number */
+.form-card input.input-padrao::-webkit-outer-spin-button,
+.form-card input.input-padrao::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.form-card input.input-padrao::-moz-number-spinbox {
+  -moz-appearance: textfield;
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.submit-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Formulário Manual Específico */
+.manual-form fieldset {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.manual-form legend {
+  padding: 0 10px;
+  font-weight: bold;
+  color: var(--primary-color); /* Usando primary-color para destaque */
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Estilos de Item */
+/* A classe item-header foi removida do JSX */
+
+.item-row-fields {
+  display: grid;
+  /* Define 4 colunas para os inputs e 1 para a ação */
+  grid-template-columns: 3fr 1fr 1fr 1.5fr auto;
+  gap: 10px;
+  align-items: flex-end; /* Alinha o rodapé dos inputs e o botão */
+  margin-bottom: 15px;
+  padding-bottom: 5px; /* Espaço para separar as linhas de item */
+  border-bottom: 1px solid var(--border-color); /* Separador visual */
+}
+
+/* Garante que os inputs dentro do item tenham largura total no seu grupo */
+.item-input-group input {
+    width: 100%;
+}
+
+/* Alinhamento do botão X */
+.item-action-group {
+    height: 100%; /* Ocupa a altura do item */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-action-group .action-label {
+    visibility: hidden; /* Esconde o rótulo para não ocupar espaço na visualização desktop */
+    margin-bottom: 6px;
+}
+
+.remove-item-btn {
+  background-color: #dc3545; /* Vermelho Erro */
+  color: white;
+  border: none;
+  width: 100%; /* Ocupa o espaço do grupo de ação */
+  max-width: 40px; /* Limita a largura em desktop */
+  height: 40px; /* Garante que tenha a altura do input */
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.remove-item-btn:hover {
+    background-color: #a82433;
+}
+
+/* --- AJUSTES DE RESPONSIVIDADE (480px) --- */
+@media (max-width: 480px) {
+    /* ... (Mantenha as regras gerais de 480px) ... */
+    
+    .item-row-fields {
+        grid-template-columns: 1fr 1fr; /* Duas colunas */
+        grid-template-areas: 
+            "codigo codigo"
+            "qtd valor"
+            "unidade remove";
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+    
+    .item-row-fields .item-input-group:nth-child(1) { grid-area: codigo; }
+    .item-row-fields .item-input-group:nth-child(2) { grid-area: qtd; }
+    .item-row-fields .item-input-group:nth-child(3) { grid-area: unidade; }
+    .item-row-fields .item-input-group:nth-child(4) { grid-area: valor; }
+    
+    .item-action-group { 
+        grid-area: remove;
+        align-items: stretch; /* Estica para largura total */
+    }
+    
+    .item-action-group .action-label {
+        visibility: visible; /* Mostra o rótulo "Remover" no mobile */
+        height: auto;
+    }
+    
+    .remove-item-btn { 
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* ==========================================================================
+  5. Responsividade (Media Queries) 📱
+  ========================================================================== */
+
+/* Telas Médias (Tablets e alguns Desktops pequenos) */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+    padding: 15px;
   }
+
+  .grid-2 {
+    /* Quebra o layout de duas colunas para uma coluna */
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajuste no layout dos itens: 4 colunas em vez de 5, o botão X fica ao lado */
+  .item-header, .item-row {
+      grid-template-columns: 2fr 1fr 1fr 1.5fr 40px; /* Ajuste para melhor visualização */
+      gap: 5px;
+  }
+  
+  .item-header p:last-child {
+      display: none; /* Esconde o rótulo da coluna "Ação" */
+  }
+
+  .remove-item-btn {
+      width: 40px;
+      padding: 0;
+      font-size: 0.8rem;
+  }
+}
+
+/* Telas Pequenas (Celulares) */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+        width: 100%;
+        box-shadow: none; /* Menos sombra para parecer nativo */
+    }
+
+    .form-card {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .manual-form fieldset {
+        padding: 15px;
+    }
+
+    /* Força o layout de item em duas linhas para ser legível */
+    .item-header {
+        display: none; /* Oculta cabeçalho dos itens em telas muito pequenas */
+    }
+    .item-row {
+        grid-template-columns: 1fr 1fr; /* Duas colunas */
+        grid-template-areas: 
+            "codigo codigo"
+            "qtd valor"
+            "unidade remove";
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+    }
+    
+    .item-row input:nth-child(1) { grid-area: codigo; }
+    .item-row input:nth-child(2) { grid-area: qtd; }
+    .item-row input:nth-child(3) { grid-area: unidade; }
+    .item-row input:nth-child(4) { grid-area: valor; }
+    .remove-item-btn { 
+        grid-area: remove;
+        width: 100%;
+        margin-top: 5px;
+    }
 }
