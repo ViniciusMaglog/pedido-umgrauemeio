@@ -248,6 +248,8 @@ h1 {
   color: white;
   border: none;
   margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 .add-item-btn:hover {
     background-color: #1b5e20;
@@ -270,11 +272,13 @@ h1 {
   background-color: #dc3545; /* Vermelho Erro */
   color: white;
   border: none;
+  border-radius: 6px;
   width: 100%; /* Ocupa o espaço do grupo de ação */
   max-width: 40px; /* Limita a largura em desktop */
   height: 40px; /* Garante que tenha a altura do input */
   padding: 0;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .remove-item-btn:hover {
