@@ -1,403 +1,379 @@
 /* ==========================================================================
-  1. Variáveis de Cor e Tema
-  ========================================================================== */
+  1. Variáveis de Cor e Tema
+  (Ajustes para maior clareza e sombra mais sutil)
+  ========================================================================== */
 :root {
-  /* Tema Claro (Padrão) */
-  --background: #f4f7f9;
-  --foreground: #171717;
-  --primary-color: #008080; /* Teal para botões e links */
-  --primary-color-hover: #006666;
-  --card-bg: #ffffff;
-  --border-color: #e0e0e0;
-  --input-bg: #ffffff; /* Fundo do input */
+    /* Tema Claro (Padrão) */
+    --background: #f7f9fb;
+    /* Fundo muito claro */
+    --foreground: #2d3748;
+    /* Cor de texto mais escura para contraste */
+    --primary-color: #00796b;
+    /* Teal Escuro (Mais Profissional) */
+    --primary-color-hover: #00897b;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    /* Borda muito clara */
+    --input-bg: #ffffff;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Sombra mais espalhada e sutil */
+    --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    /* Inset shadow suave */
+    --shadow-button: 0 4px 10px rgba(0, 121, 107, 0.2);
+    /* Sombra focada no botão */
+    --shadow-focus: 0 0 0 3px rgba(0, 121, 107, 0.4);
+    /* Foco Teal mais fino */
 
-  --success-bg: #c8e6c9;
-  --success-text: #1b5e20;
-  --error-bg: #ffcdd2;
-  --error-text: #b71c1c;
-  --loading-bg: #bbdefb;
-  --loading-text: #0d47a1;
-  --pending-bg: #e0e0e0;
-  --pending-text: #424242;
+    --success-bg: #38a169;
+    /* Verde mais profissional */
+    --error-bg: #e53e3e;
+    /* Vermelho padrão */
+    --pending-bg: #cbd5e0;
+
+    --success-text: #ffffff;
+    --error-text: #ffffff;
+    --loading-text: #ffffff;
+    --pending-text: #000000;
 }
 
-/* Tema escuro funcional (Ativado pela preferência do navegador) */
+/* Tema escuro funcional */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121212;
-    --foreground: #e0e0e0;
-    --primary-color: #008080; /* Mantido Teal */
-    --primary-color-hover: #006666;
-    --card-bg: #1e1e1e;
-    --border-color: #424242;
-    --input-bg: #2d2d2d; /* Fundo do input no modo escuro */
+    :root {
+        --background: #171923;
+        /* Fundo escuro azulado */
+        --foreground: #e2e8f0;
+        --primary-color: #2bc4b8;
+        /* Teal brilhante para destaque */
+        --primary-color-hover: #48d2c6;
+        --card-bg: #2d3748;
+        --border-color: #4a5568;
+        --input-bg: #202736;
+        --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.6);
+        --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        --shadow-button: 0 4px 10px rgba(43, 196, 184, 0.25);
+        --shadow-focus: 0 0 0 3px rgba(43, 196, 184, 0.4);
 
-    --success-bg: #2e7d32;
-    --success-text: #e8f5e9;
-    --error-bg: #c62828;
-    --error-text: #ffcdd2;
-    --loading-bg: #1565c0;
-    --loading-text: #e3f2fd;
-    --pending-bg: #424242;
-    --pending-text: #eeeeee;
-  }
+        --success-bg: #38a169;
+        --error-bg: #c53030;
+        --pending-bg: #4a5568;
+    }
 }
 
 /* ==========================================================================
-  2. Reset e Estilos Globais
-  ========================================================================== */
+  2. Reset e Estilos Globais
+  ========================================================================== */
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 /* ==========================================================================
-  3. Layout e Componentes Principais
-  ========================================================================== */
+  3. Layout e Componentes Principais
+  ========================================================================== */
 .container {
-  max-width: 800px;
-  width: 95%;
-  margin: 40px auto;
-  padding: 20px;
-  /* Removido text-align: center para melhor alinhamento do formulário */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 850px;
+    width: 95%;
+    margin: 40px auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: none;
 }
 
 .logo {
-  margin-bottom: 24px;
-  object-fit: contain;
+    margin-bottom: 28px;
+    object-fit: contain;
 }
 
 h1 {
-  margin-bottom: 24px;
-  text-align: center;
-  color: var(--foreground);
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* Informação fixa (Um Grau e Meio) */
 .fixed-info {
-    padding: 5px 0 15px;
-    font-size: 1.0em;
+    padding: 5px 0 20px;
+    font-size: 1.1em;
     color: var(--primary-color);
-    font-style: italic;
-    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
     width: 100%;
 }
 
-
 /* ==========================================================================
-  4. Formulários
-  ========================================================================== */
-.form-card {
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
-
-.form-group {
-  text-align: left;
-}
-
+  4. Formulários (Visual Aprimorado)
+  ========================================================================== */
 .form-group label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-  font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--foreground);
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 /* Estilo geral para inputs e selects */
-.form-card input[type="text"],
-.form-card input[type="number"],
-.form-card input[type="date"],
-.form-card input[type="file"],
-.form-card textarea,
-.input-padrao,
-.form-card select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background-color: var(--input-bg);
-  color: var(--foreground);
-  font-size: 1rem;
-  height: 40px;
-  box-sizing: border-box;
+.form-card input,
+.form-card select,
+.form-card textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--foreground);
+    font-size: 1rem;
+    height: 48px;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+    box-shadow: var(--shadow-inset);
+}
+
+.form-card textarea {
+    min-height: 120px;
+    height: auto !important;
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: var(--shadow-focus);
 }
 
 /* Estilo para input date desabilitado/readonly */
 .form-card input[readonly] {
     background-color: var(--pending-bg) !important;
+    color: var(--pending-text) !important;
     cursor: not-allowed !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Ajuste para textarea */
-.form-card textarea {
-    height: auto !important;
-    min-height: 80px;
-}
-
-/* Remoção das setas do input number */
-.form-card input.input-padrao::-webkit-outer-spin-button,
-.form-card input.input-padrao::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.form-card input.input-padrao::-moz-number-spinbox {
-  -moz-appearance: textfield;
+/* Botões: Estilo 3D/Shadow Lift */
+.submit-btn,
+.add-item-btn,
+.remove-item-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .submit-btn {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-size: 1rem;
-  font-weight: bold;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-button);
 }
 
 .submit-btn:hover {
-  background-color: var(--primary-color-hover);
+    background-color: var(--primary-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 121, 107, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .submit-btn:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+    background-color: var(--pending-bg);
+    color: var(--pending-text);
+    box-shadow: none;
+    transform: none;
 }
 
 /* Formulário Manual Específico */
 .manual-form fieldset {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    background-color: var(--card-bg);
 }
 
 .manual-form legend {
-  padding: 0 10px;
-  font-weight: bold;
-  color: var(--primary-color); /* Usando primary-color para destaque */
+    padding: 0 15px;
+    font-weight: 800;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-left: -10px;
+    text-transform: uppercase;
 }
 
 .grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 /* Estilos de Item */
-/* A classe item-header foi removida do JSX */
-
 .item-row-fields {
-  display: grid;
-  /* Define 4 colunas para os inputs e 1 para a ação */
-  grid-template-columns: 3fr 1fr 1fr 1.5fr auto;
-  gap: 10px;
-  align-items: flex-end; /* Alinha o rodapé dos inputs e o botão */
-  margin-bottom: 15px;
-  padding-bottom: 5px; /* Espaço para separar as linhas de item */
-  border-bottom: 1px solid var(--border-color); /* Separador visual */
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1.5fr auto;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--border-color);
 }
 
-/* Garante que os inputs dentro do item tenham largura total no seu grupo */
-.item-input-group input {
-    width: 100%;
-}
-
-/* botão add item */
-.add-item-btn, .remove-item-btn {
-  /* ... (outras propriedades) ... */
-  height: 40px;
-  transition: background-color 0.2s;
-}
-
+/* Botão Adicionar Item */
 .add-item-btn {
-  background-color: #28a745; /* Verde Sucesso */
-  color: white;
-  border: none;
-  margin-top: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.add-item-btn:hover {
-    background-color: #1b5e20;
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    font-weight: 700;
+    height: 48px;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(56, 161, 105, 0.3);
 }
 
-/* Alinhamento do botão X */
+.add-item-btn:hover {
+    background-color: #319795;
+    transform: translateY(-1px);
+}
+
+/* Botão Remover Item */
 .item-action-group {
-    height: 100%; /* Ocupa a altura do item */
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.item-action-group .action-label {
-    visibility: hidden; /* Esconde o rótulo para não ocupar espaço na visualização desktop */
-    margin-bottom: 6px;
-}
-
 .remove-item-btn {
-  background-color: #dc3545; /* Vermelho Erro */
-  color: white;
-  border: none;
-  border-radius: 6px;
-  width: 100%; /* Ocupa o espaço do grupo de ação */
-  max-width: 40px; /* Limita a largura em desktop */
-  height: 40px; /* Garante que tenha a altura do input */
-  padding: 0;
-  flex-shrink: 0;
-  cursor: pointer;
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    max-width: 48px;
+    height: 48px;
+    padding: 0 10px;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(229, 62, 62, 0.3);
 }
 
 .remove-item-btn:hover {
-    background-color: #a82433;
-}
-
-/* --- AJUSTES DE RESPONSIVIDADE (480px) --- */
-@media (max-width: 480px) {
-    /* ... (Mantenha as regras gerais de 480px) ... */
-    
-    .item-row-fields {
-        grid-template-columns: 1fr 1fr; /* Duas colunas */
-        grid-template-areas: 
-            "codigo codigo"
-            "qtd valor"
-            "unidade remove";
-        margin-bottom: 20px;
-        padding: 10px;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-    }
-    
-    .item-row-fields .item-input-group:nth-child(1) { grid-area: codigo; }
-    .item-row-fields .item-input-group:nth-child(2) { grid-area: qtd; }
-    .item-row-fields .item-input-group:nth-child(3) { grid-area: unidade; }
-    .item-row-fields .item-input-group:nth-child(4) { grid-area: valor; }
-    
-    .item-action-group { 
-        grid-area: remove;
-        align-items: stretch; /* Estica para largura total */
-    }
-    
-    .item-action-group .action-label {
-        visibility: visible; /* Mostra o rótulo "Remover" no mobile */
-        height: auto;
-    }
-    
-    .remove-item-btn { 
-        width: 100%;
-        max-width: none;
-    }
+    background-color: #c53030;
+    transform: translateY(-1px);
 }
 
 /* ==========================================================================
-  5. Responsividade (Media Queries) 📱
-  ========================================================================== */
+  5. Responsividade (Otimizada)
+  ========================================================================== */
 
-/* Telas Médias (Tablets e alguns Desktops pequenos) */
+/* Telas Médias (768px) */
 @media (max-width: 768px) {
-  .container {
-    margin: 20px auto;
-    padding: 15px;
-  }
-
-  .grid-2 {
-    /* Quebra o layout de duas colunas para uma coluna */
-    grid-template-columns: 1fr;
-  }
-
-  /* Ajuste no layout dos itens: 4 colunas em vez de 5, o botão X fica ao lado */
-  .item-header, .item-row {
-      grid-template-columns: 2fr 1fr 1fr 1.5fr 40px; /* Ajuste para melhor visualização */
-      gap: 5px;
-  }
-  
-  .item-header p:last-child {
-      display: none; /* Esconde o rótulo da coluna "Ação" */
-  }
-
-  .remove-item-btn {
-      width: 40px;
-      padding: 0;
-      font-size: 0.8rem;
-  }
-}
-
-/* Telas Pequenas (Celulares) */
-@media (max-width: 480px) {
     .container {
-        padding: 10px;
+        margin: 0;
+        padding: 15px;
+        border-radius: 0;
+        box-shadow: none;
         width: 100%;
-        box-shadow: none; /* Menos sombra para parecer nativo */
     }
 
-    .form-card {
-        padding: 15px;
+    h1{
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        text-align: center;
     }
 
-    h1 {
-        font-size: 1.5rem;
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
-    
+
     .manual-form fieldset {
-        padding: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
     }
 
-    /* Força o layout de item em duas linhas para ser legível */
-    .item-header {
-        display: none; /* Oculta cabeçalho dos itens em telas muito pequenas */
-    }
-    .item-row {
-        grid-template-columns: 1fr 1fr; /* Duas colunas */
-        grid-template-areas: 
+    /* Layout de Item em 2 colunas */
+    .item-row-fields {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
             "codigo codigo"
             "qtd valor"
             "unidade remove";
-        margin-bottom: 20px;
-        padding: 10px;
+        padding: 15px 10px;
+        margin-bottom: 15px;
         border: 1px solid var(--border-color);
-        border-radius: 8px;
+        border-bottom: none;
     }
-    
-    .item-row input:nth-child(1) { grid-area: codigo; }
-    .item-row input:nth-child(2) { grid-area: qtd; }
-    .item-row input:nth-child(3) { grid-area: unidade; }
-    .item-row input:nth-child(4) { grid-area: valor; }
-    .remove-item-btn { 
+
+    .item-row-fields .item-input-group:nth-child(1) {
+        grid-area: codigo;
+    }
+
+    .item-row-fields .item-input-group:nth-child(2) {
+        grid-area: qtd;
+    }
+
+    .item-row-fields .item-input-group:nth-child(3) {
+        grid-area: unidade;
+    }
+
+    .item-row-fields .item-input-group:nth-child(4) {
+        grid-area: valor;
+    }
+
+    .item-action-group {
         grid-area: remove;
+        align-items: stretch;
+    }
+
+    .item-action-group .action-label {
+        visibility: visible;
+        height: auto;
+    }
+
+    .remove-item-btn {
         width: 100%;
-        margin-top: 5px;
+        max-width: none;
+    }
+
+    .add-item-btn {
+        width: 100%;
+    }
+}
+
+/* Telas Pequenas (480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .manual-form fieldset {
+        padding: 15px;
     }
 }
