@@ -1,10 +1,10 @@
 /* ==========================================================================
-   1. Variáveis de Cor e Tema (Identidade Premium Atualizada)
+   1. Variáveis de Cor e Tema (Identidade Premium Calibrada)
    ========================================================================== */
 :root {
     /* Fundo geral definido como branco puro */
-    --background: #ffffff;
-    --foreground: #5c5e6b; /* Texto escuro com toque azulado */
+    --background: #000000;
+    --foreground: #000000; /* Texto escuro com toque azulado para leitura perfeita */
     
     /* Cores da Identidade */
     --primary-color: #282a74;          /* Azul Real */
@@ -12,47 +12,47 @@
     --gold-light: #ddb140;             /* Dourado Nobre */
     --gold-dark: #ddb140;              /* Dourado Champanhe */
     
-    /* O Bloco do Formulário com o tom cinza sofisticado */
-    --card-bg: #282a74;
-    --border-color: #e2e8f0;           /* Linhas finas e discretas */
-    --input-bg: #282a74;               /* Inputs brancos contrastando com o bloco */
+    /* O Bloco do Formulário com o tom cinza sofisticado solicitado */
+    --card-bg: #f4f6f9;
+    --border-color: #cbd5e1;           /* Borda sutil para contornar o card cinza */
+    --input-bg: #ffffff;               /* Inputs brancos contrastando perfeitamente sobre o card cinza */
     
     /* Sombras de estúdio (super suaves e realistas) */
-    --shadow-soft: 0 20px 40px -15px rgba(40, 42, 116, 0.05);
+    --shadow-soft: 0 10px 30px -10px rgba(40, 42, 116, 0.08);
     --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.02);
     --shadow-button: 0 4px 14px rgba(40, 42, 116, 0.12);
-    --shadow-focus: 0 0 0 3px rgba(203, 173, 99, 0.15); /* Foco sutil em dourado */
+    --shadow-focus: 0 0 0 3px rgba(221, 177, 64, 0.2); /* Foco sutil em dourado */
 
     /* Estados */
-    --success-bg: rgba(203, 173, 99, 0.08); 
+    --success-bg: rgba(221, 177, 64, 0.08); 
     --error-bg: #fff5f5;
     --error-stroke: #e53e3e;
     --pending-bg: #edf2f7;
-    --pending-text: #718096;
+    --pending-text: #000000; /* Tom cinza médio elegante para os labels */
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #0b0c16;
-        --foreground: #f1f5f9;
+        --foreground: #22253f;
         
         --primary-color: #ddb140;
         --primary-color-hover: #e6d095;
         
         --card-bg: #131525;
         --border-color: #22253f;
-        --input-bg: #0b0c16;
+        --input-bg: #ffffff;
         
         --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
         --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-        --shadow-button: 0 4px 12px rgba(230, 208, 149, 0.1);
-        --shadow-focus: 0 0 0 3px rgba(230, 208, 149, 0.2);
+        --shadow-button: 0 4px 12px rgba(221, 177, 64, 0.1);
+        --shadow-focus: 0 0 0 3px rgba(221, 177, 64, 0.2);
 
-        --success-bg: rgba(230, 208, 149, 0.1);
+        --success-bg: rgba(221, 177, 64, 0.1);
         --error-bg: #241414;
         --error-stroke: #f56565;
         --pending-bg: #1e2238;
-        --pending-text: #a0aec0;
+        --pending-text: #000000;
     }
 }
 
@@ -92,7 +92,7 @@ body {
 h1 {
     color: var(--primary-color);
     font-size: 1.6rem;
-    font-weight: 700; /* Bold marcante */
+    font-weight: 700; /* Bold marcante no título principal */
     letter-spacing: -0.01em;
     margin-bottom: 40px;
     border-bottom: 1px solid var(--border-color);
@@ -103,25 +103,25 @@ h1 {
    4. O Cartão e Formulário
    ========================================================================== */
 .form-card {
-    background: var(--card-bg); /* Mantém a cor cinza elegante do card */
+    /* background: var(--card-bg); Garante a cor cinza sofisticada interna do card */
     border-radius: 12px;
     box-shadow: var(--shadow-soft);
     padding: 40px;
     border: 1px solid var(--border-color);
+    background-color: #dbe0e7 !important; /* Mantido cinza sofisticado para o card */
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    color: var(--foreground);
 }
 
 .form-group label {
     font-size: 0.8rem;
     color: var(--pending-text);
     margin-bottom: 8px;
-    font-weight: 500;
+    font-weight: 600; /* Leve destaque nos nomes dos campos */
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -132,7 +132,7 @@ h1 {
     padding: 12px 16px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: var(--input-bg); /* Inputs brancos */
+    background-color: var(--input-bg); /* Inputs brancos purificados */
     color: var(--foreground);
     font-family: inherit;
     font-size: 0.95rem;
@@ -148,7 +148,7 @@ h1 {
 }
 
 .input-readonly {
-    background-color: #edf2f7 !important; /* Cinza para campos travados */
+    background-color: #edf2f7 !important; /* Cinza claro neutro para campos bloqueados */
     color: var(--pending-text) !important;
     cursor: not-allowed !important;
     border-color: var(--border-color);
@@ -161,21 +161,26 @@ h1 {
     border-top: 1px dashed var(--border-color);
     padding: 32px 0 12px 0;
     margin-top: 20px;
+    /* background-color: transparent !important; Ajustado para transparente de forma que herde o cinza do card-bg sem forçar branco */
+    background-color: #dbe0e7 !important; /* Mantido branco puro para contraste com o card cinza */
 }
 
 .manual-form fieldset:first-of-type {
     border-top: none;
     padding-top: 0;
     margin-top: 0;
+    /* background-color: transparent !important; */
+    background-color: #dbe0e7 !important; /* Mantido branco puro para contraste com o card cinza */
 }
 
 .manual-form legend {
     color: var(--primary-color);
     font-size: 1.1rem;
-    font-weight: 700; /* Bold marcante nos subtítulos */
+    font-weight: 700; /* Bold marcante nos subtítulos/legendas do formulário */
     margin-bottom: 24px;
     padding: 0;
     letter-spacing: -0.01em;
+    background-color: #dbe0e7 !important; /* Mantido branco puro para contraste com o card cinza */
 }
 
 .grid-2 {
@@ -191,7 +196,7 @@ h1 {
     gap: 16px;
     align-items: flex-end;
     margin-bottom: 16px;
-    background: #ffffff; /* Linhas de item brancas para destacar no fundo cinza do card */
+    background: transparent; /* Mantido linhas de itens brancas para saltar sobre o bloco cinza */
     padding: 20px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
@@ -246,8 +251,8 @@ h1 {
 }
 
 .remove-item-btn {
-    background-color: var(--input-bg);
-    border: 1px solid #fee2e2;
+    background-color: transparent;
+    border: 1px solid #e53e3e;
     color: var(--error-stroke);
     width: 46px;
     height: 46px;
