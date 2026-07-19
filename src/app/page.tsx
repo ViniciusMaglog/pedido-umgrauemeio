@@ -3,24 +3,16 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 
 // --- CONFIGURAÇÕES FIXAS PARA UM GRAU E MEIO / MALAF ---
-
-// Cliente fixo: Um Grau e Meio
 const CLIENT_ID = '8A697099-E130-4A57-BE47-DD8B72E3C003';
 const CLIENT_NAME = 'Um Grau e Meio';
 
-// Filiais fixas (MALAF)
 const MALAF_FILIAIS = [
-    { cnpj: '20230376000280', name: 'MALAF TRANSPORTES E LOGISTICA LTDA (Matriz/Filial)' },
+    { cnpj: '63590553000161', name: 'ELAH LOGISTICA INTEGRADA LTDA' },
 ];
 
-// O CNPJ que será o padrão/pré-selecionado
 const DEFAULT_CNPJ_FILIAL = MALAF_FILIAIS[0].cnpj;
-
-// CONSTANTES DA API E TENANT
 const TENANT = process.env.NEXT_PUBLIC_TENANT || 'F8A63EBF-A4C5-457D-9482-2D6381318B8E';
 const API_POST_URL = 'https://api.maglog.com.br/api-wms/rest/1/event/expedicao';
-
-// Texto fixo para observação de pedidos via integração
 const FIXED_OBSERVATION = 'Maglog: pedido criado por Um Grau e Meio via integração.';
 
 // --- INTERFACES ---
@@ -65,9 +57,8 @@ interface ExpedicaoBody {
     Observacao?: string;
 }
 
-// --- ESTADO INICIAL MANUAL ---
 const initialManualFormState: ExpedicaoBody = {
-    CNPJFilial: DEFAULT_CNPJ_FILIAL, // MALAF
+    CNPJFilial: DEFAULT_CNPJ_FILIAL,
     Documento: '',
     Emissao: new Date().toISOString().split('T')[0],
     Destinatario: {
@@ -83,12 +74,10 @@ const initialManualFormState: ExpedicaoBody = {
     Observacao: ''
 };
 
-// --- FUNÇÃO PRINCIPAL ---
 export default function ExpedicaoPage() {
     const [isProcessing, setIsProcessing] = useState(false);
     const [manualForm, setManualForm] = useState<ExpedicaoBody>(initialManualFormState);
 
-    // Função para remover campos com valor 'undefined'
     function cleanUndefineds<T>(obj: T): T {
         if (Array.isArray(obj)) { return obj.map(cleanUndefineds) as unknown as T; }
         if (typeof obj === 'object' && obj !== null) {
@@ -102,7 +91,6 @@ export default function ExpedicaoPage() {
         return obj;
     }
 
-    // --- LÓGICA PARA CADASTRO MANUAL ---
     const handleManualFormChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
         const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined;
@@ -153,14 +141,12 @@ export default function ExpedicaoPage() {
 
         const formPayload = JSON.parse(JSON.stringify(manualForm));
 
-        // Lógica de concatenação da Observação
         if (formPayload.Observacao) {
             formPayload.Observacao = `${FIXED_OBSERVATION} | ${formPayload.Observacao}`;
         } else {
             formPayload.Observacao = FIXED_OBSERVATION;
         }
 
-        // Tratar Transportadora vazia
         if (!formPayload.Transportadora.Nome && !formPayload.Transportadora.CNPJ) {
             formPayload.Transportadora = {
                 CNPJ: '00000000000000', Nome: 'Cliente Retira', Logradouro: 'Cliente Retira', Numero: 'S/N',
@@ -190,7 +176,6 @@ export default function ExpedicaoPage() {
         }
     };
 
-    // --- RENDERIZAÇÃO DO FORMULÁRIO MANUAL ---
     const renderManualForm = () => (
         <form onSubmit={handleManualSubmit} className="form-card manual-form">
             <fieldset>
@@ -211,15 +196,14 @@ export default function ExpedicaoPage() {
                         <input type="text" name="Documento" value={manualForm.Documento} onChange={handleManualFormChange} required className="input-padrao" />
                     </div>
                     <div className="form-group">
-                        <label>Data de Emissão (Fixo: Hoje)</label>
+                        <label>Data de Emissão</label>
                         <input
                             type="date"
                             name="Emissao"
                             value={manualForm.Emissao.split('T')[0]}
                             required
-                            className="input-padrao"
+                            className="input-padrao input-readonly"
                             readOnly
-                            style={{ backgroundColor: '#000000ff', cursor: 'not-allowed', }}
                         />
                     </div>
                 </div>
@@ -278,7 +262,6 @@ export default function ExpedicaoPage() {
 
                 {manualForm.Itens.map((item, index) => (
                     <div key={index} className="item-row-fields">
-
                         <div className="form-group item-input-group">
                             <label>Código</label>
                             <input type="text" name="Codigo" value={item.Codigo} onChange={(e) => handleItemChange(index, e)} required className="input-padrao" />
@@ -300,10 +283,8 @@ export default function ExpedicaoPage() {
                         </div>
 
                         <div className="form-group item-action-group">
-                            <label className="action-label">Remover</label>
-                            <button type="button" onClick={() => handleRemoveItem(index)} className="remove-item-btn">X</button>
+                            <button type="button" onClick={() => handleRemoveItem(index)} className="remove-item-btn">×</button>
                         </div>
-
                     </div>
                 ))}
                 <button type="button" onClick={handleAddItem} className="add-item-btn">+ Adicionar Item</button>
@@ -337,7 +318,6 @@ export default function ExpedicaoPage() {
                 </div>
             </fieldset>
 
-            {/* FIELDSET PARA OBSERVAÇÃO DO PEDIDO (CORRIGIDO) */}
             <fieldset>
                 <legend>Observação do Pedido (Opcional)</legend>
                 <div className="form-group">
@@ -352,12 +332,10 @@ export default function ExpedicaoPage() {
         </form>
     );
 
-    // --- RENDERIZAÇÃO PRINCIPAL ---
     return (
         <div className="container">
-            <img src="/logo.png" alt={`Logo ${CLIENT_NAME}`} width="150" height="50" className="logo" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/150x60/eee/ccc?text=Logo'; }} />
-            <h1>Cadastro de Pedidos - {CLIENT_NAME}</h1>
-
+            <img src="/logo.png" alt={`Logo ${CLIENT_NAME}`} width="200" height="60" className="logo" onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/150x60/eee/ccc?text=Logo'; }} />
+            <h1>Cadastro de Pedidos — {CLIENT_NAME}</h1>
             {renderManualForm()}
         </div>
     );

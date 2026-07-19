@@ -1,379 +1,286 @@
 /* ==========================================================================
-  1. Variáveis de Cor e Tema
-  (Ajustes para maior clareza e sombra mais sutil)
-  ========================================================================== */
+   1. Variáveis de Cor e Tema (Identidade Premium Atualizada)
+   ========================================================================== */
 :root {
-    /* Tema Claro (Padrão) */
-    --background: #f7f9fb;
-    /* Fundo muito claro */
-    --foreground: #2d3748;
-    /* Cor de texto mais escura para contraste */
-    --primary-color: #00796b;
-    /* Teal Escuro (Mais Profissional) */
-    --primary-color-hover: #00897b;
-    --card-bg: #ffffff;
-    --border-color: #e2e8f0;
-    /* Borda muito clara */
-    --input-bg: #ffffff;
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
-    /* Sombra mais espalhada e sutil */
-    --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.08);
-    /* Inset shadow suave */
-    --shadow-button: 0 4px 10px rgba(0, 121, 107, 0.2);
-    /* Sombra focada no botão */
-    --shadow-focus: 0 0 0 3px rgba(0, 121, 107, 0.4);
-    /* Foco Teal mais fino */
+    /* Fundo geral definido como branco puro */
+    --background: #ffffff;
+    --foreground: #5c5e6b; /* Texto escuro com toque azulado */
+    
+    /* Cores da Identidade */
+    --primary-color: #282a74;          /* Azul Real */
+    --primary-color-hover: #1b1c52;    /* Azul Noturno */
+    --gold-light: #ddb140;             /* Dourado Nobre */
+    --gold-dark: #ddb140;              /* Dourado Champanhe */
+    
+    /* O Bloco do Formulário com o tom cinza sofisticado */
+    --card-bg: #282a74;
+    --border-color: #e2e8f0;           /* Linhas finas e discretas */
+    --input-bg: #282a74;               /* Inputs brancos contrastando com o bloco */
+    
+    /* Sombras de estúdio (super suaves e realistas) */
+    --shadow-soft: 0 20px 40px -15px rgba(40, 42, 116, 0.05);
+    --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+    --shadow-button: 0 4px 14px rgba(40, 42, 116, 0.12);
+    --shadow-focus: 0 0 0 3px rgba(203, 173, 99, 0.15); /* Foco sutil em dourado */
 
-    --success-bg: #38a169;
-    /* Verde mais profissional */
-    --error-bg: #e53e3e;
-    /* Vermelho padrão */
-    --pending-bg: #cbd5e0;
-
-    --success-text: #ffffff;
-    --error-text: #ffffff;
-    --loading-text: #ffffff;
-    --pending-text: #000000;
+    /* Estados */
+    --success-bg: rgba(203, 173, 99, 0.08); 
+    --error-bg: #fff5f5;
+    --error-stroke: #e53e3e;
+    --pending-bg: #edf2f7;
+    --pending-text: #718096;
 }
 
-/* Tema escuro funcional */
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #171923;
-        /* Fundo escuro azulado */
-        --foreground: #e2e8f0;
-        --primary-color: #2bc4b8;
-        /* Teal brilhante para destaque */
-        --primary-color-hover: #48d2c6;
-        --card-bg: #2d3748;
-        --border-color: #4a5568;
-        --input-bg: #202736;
-        --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.6);
-        --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.3);
-        --shadow-button: 0 4px 10px rgba(43, 196, 184, 0.25);
-        --shadow-focus: 0 0 0 3px rgba(43, 196, 184, 0.4);
+        --background: #0b0c16;
+        --foreground: #f1f5f9;
+        
+        --primary-color: #ddb140;
+        --primary-color-hover: #e6d095;
+        
+        --card-bg: #131525;
+        --border-color: #22253f;
+        --input-bg: #0b0c16;
+        
+        --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
+        --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        --shadow-button: 0 4px 12px rgba(230, 208, 149, 0.1);
+        --shadow-focus: 0 0 0 3px rgba(230, 208, 149, 0.2);
 
-        --success-bg: #38a169;
-        --error-bg: #c53030;
-        --pending-bg: #4a5568;
+        --success-bg: rgba(230, 208, 149, 0.1);
+        --error-bg: #241414;
+        --error-stroke: #f56565;
+        --pending-bg: #1e2238;
+        --pending-text: #a0aec0;
     }
 }
 
 /* ==========================================================================
-  2. Reset e Estilos Globais
-  ========================================================================== */
+   2. Reset e Tipografia Fina
+   ========================================================================== */
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     color: var(--foreground);
-    background: var(--background);
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff !important; /* Força o fundo da página a ser branco puro */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
 /* ==========================================================================
-  3. Layout e Componentes Principais
-  ========================================================================== */
+   3. Estrutura de Tela
+   ========================================================================== */
 .container {
-    max-width: 850px;
-    width: 95%;
-    margin: 40px auto;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: var(--shadow-soft);
-    border: none;
+    max-width: 960px;
+    width: 100%;
+    margin: 60px auto;
+    padding: 0 24px;
+    background-color: #ffffff !important; /* Garante que a área externa ao card seja branca */
 }
 
 .logo {
-    margin-bottom: 28px;
-    object-fit: contain;
+    display: block;
+    margin: 0 auto 24px 0;
 }
 
 h1 {
-    margin-bottom: 30px;
-    font-size: 1.5rem;
-    font-weight: 800;
     color: var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.fixed-info {
-    padding: 5px 0 20px;
-    font-size: 1.1em;
-    color: var(--primary-color);
-    font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 700; /* Bold marcante */
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
     border-bottom: 1px solid var(--border-color);
-    width: 100%;
+    padding-bottom: 16px;
 }
 
 /* ==========================================================================
-  4. Formulários (Visual Aprimorado)
-  ========================================================================== */
-.form-group label {
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: var(--foreground);
-    font-size: 0.9rem;
-    opacity: 0.8;
+   4. O Cartão e Formulário
+   ========================================================================== */
+.form-card {
+    background: var(--card-bg); /* Mantém a cor cinza elegante do card */
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    padding: 40px;
+    border: 1px solid var(--border-color);
 }
 
-/* Estilo geral para inputs e selects */
-.form-card input,
-.form-card select,
-.form-card textarea {
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    color: var(--foreground);
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    color: var(--pending-text);
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Inputs Premium */
+.input-padrao {
     width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: var(--input-bg);
+    background-color: var(--input-bg); /* Inputs brancos */
     color: var(--foreground);
-    font-size: 1rem;
-    height: 48px;
-    box-sizing: border-box;
-    transition: all 0.2s ease-in-out;
+    font-family: inherit;
+    font-size: 0.95rem;
+    height: 46px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
     box-shadow: var(--shadow-inset);
 }
 
-.form-card textarea {
-    min-height: 120px;
-    height: auto !important;
-}
-
-.form-card input:focus,
-.form-card select:focus,
-.form-card textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
+.input-padrao:focus {
+    border-color: var(--gold-light);
     box-shadow: var(--shadow-focus);
 }
 
-/* Estilo para input date desabilitado/readonly */
-.form-card input[readonly] {
-    background-color: var(--pending-bg) !important;
+.input-readonly {
+    background-color: #edf2f7 !important; /* Cinza para campos travados */
     color: var(--pending-text) !important;
     cursor: not-allowed !important;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-/* Botões: Estilo 3D/Shadow Lift */
-.submit-btn,
-.add-item-btn,
-.remove-item-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: all 0.2s ease-in-out;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.submit-btn {
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 1.1rem;
-    box-shadow: var(--shadow-button);
-}
-
-.submit-btn:hover {
-    background-color: var(--primary-color-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 121, 107, 0.3);
-}
-
-.submit-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.submit-btn:disabled {
-    background-color: var(--pending-bg);
-    color: var(--pending-text);
+    border-color: var(--border-color);
     box-shadow: none;
-    transform: none;
 }
 
-/* Formulário Manual Específico */
+/* Seções Internas (Fieldsets) */
 .manual-form fieldset {
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    background-color: var(--card-bg);
+    border: none;
+    border-top: 1px dashed var(--border-color);
+    padding: 32px 0 12px 0;
+    margin-top: 20px;
+}
+
+.manual-form fieldset:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .manual-form legend {
-    padding: 0 15px;
-    font-weight: 800;
     color: var(--primary-color);
     font-size: 1.1rem;
-    margin-left: -10px;
-    text-transform: uppercase;
+    font-weight: 700; /* Bold marcante nos subtítulos */
+    margin-bottom: 24px;
+    padding: 0;
+    letter-spacing: -0.01em;
 }
 
 .grid-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
-/* Estilos de Item */
+/* Tabela de Itens Dinâmicos */
 .item-row-fields {
     display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1.5fr auto;
-    gap: 10px;
+    grid-template-columns: 2.5fr 1fr 1fr 1.5fr auto;
+    gap: 16px;
     align-items: flex-end;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed var(--border-color);
-}
-
-/* Botão Adicionar Item */
-.add-item-btn {
-    background-color: var(--success-bg);
-    color: var(--success-text);
-    font-weight: 700;
-    height: 48px;
-    margin-top: 15px;
-    box-shadow: 0 4px 10px rgba(56, 161, 105, 0.3);
-}
-
-.add-item-btn:hover {
-    background-color: #319795;
-    transform: translateY(-1px);
-}
-
-/* Botão Remover Item */
-.item-action-group {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.remove-item-btn {
-    background-color: var(--error-bg);
-    color: var(--error-text);
-    max-width: 48px;
-    height: 48px;
-    padding: 0 10px;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 10px rgba(229, 62, 62, 0.3);
-}
-
-.remove-item-btn:hover {
-    background-color: #c53030;
-    transform: translateY(-1px);
+    margin-bottom: 16px;
+    background: #ffffff; /* Linhas de item brancas para destacar no fundo cinza do card */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
 
 /* ==========================================================================
-  5. Responsividade (Otimizada)
-  ========================================================================== */
-
-/* Telas Médias (768px) */
-@media (max-width: 768px) {
-    .container {
-        margin: 0;
-        padding: 15px;
-        border-radius: 0;
-        box-shadow: none;
-        width: 100%;
-    }
-
-    h1{
-        font-size: 1.3rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .grid-2 {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .manual-form fieldset {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-
-    /* Layout de Item em 2 colunas */
-    .item-row-fields {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "codigo codigo"
-            "qtd valor"
-            "unidade remove";
-        padding: 15px 10px;
-        margin-bottom: 15px;
-        border: 1px solid var(--border-color);
-        border-bottom: none;
-    }
-
-    .item-row-fields .item-input-group:nth-child(1) {
-        grid-area: codigo;
-    }
-
-    .item-row-fields .item-input-group:nth-child(2) {
-        grid-area: qtd;
-    }
-
-    .item-row-fields .item-input-group:nth-child(3) {
-        grid-area: unidade;
-    }
-
-    .item-row-fields .item-input-group:nth-child(4) {
-        grid-area: valor;
-    }
-
-    .item-action-group {
-        grid-area: remove;
-        align-items: stretch;
-    }
-
-    .item-action-group .action-label {
-        visibility: visible;
-        height: auto;
-    }
-
-    .remove-item-btn {
-        width: 100%;
-        max-width: none;
-    }
-
-    .add-item-btn {
-        width: 100%;
-    }
+   5. Botões de Alta Costura
+   ========================================================================== */
+.submit-btn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 16px 32px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 24px;
+    box-shadow: var(--shadow-button);
+    letter-spacing: 0.02em;
 }
 
-/* Telas Pequenas (480px) */
-@media (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
+.submit-btn:hover:not(:disabled) {
+    background-color: var(--primary-color-hover);
+}
 
-    .manual-form fieldset {
-        padding: 15px;
+.submit-btn:disabled {
+    background-color: var(--border-color);
+    color: var(--pending-text);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.add-item-btn {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+.add-item-btn:hover {
+    background-color: rgba(40, 42, 116, 0.04);
+    border-color: var(--primary-color-hover);
+}
+
+.remove-item-btn {
+    background-color: var(--input-bg);
+    border: 1px solid #fee2e2;
+    color: var(--error-stroke);
+    width: 46px;
+    height: 46px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.remove-item-btn:hover {
+    background-color: var(--error-bg);
+    border-color: var(--error-stroke);
+}
+
+/* ==========================================================================
+   6. Otimização Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+    .container { margin: 24px auto; }
+    .form-card { padding: 24px; }
+    h1 { font-size: 1.3rem; text-align: center; }
+    
+    .item-row-fields {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 16px;
     }
+    .item-row-fields .item-input-group:nth-child(1) { grid-column: span 2; }
+    .item-row-fields .item-input-group:nth-child(4) { grid-column: span 2; }
+    .item-action-group { grid-column: span 2; margin-top: 8px; }
+    .remove-item-btn { width: 100%; height: 44px; }
+    .add-item-btn { width: 100%; }
 }
